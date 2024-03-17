@@ -1,13 +1,12 @@
-const TelegramBot = require("node-telegram-bot-api");
+const express = require("express");
 
-const token = "6882067171:AAFh_nybHBQEOn5xMoTQLB-06_7-c0n5A5M"; // Replace with your own bot token
-const bot = new TelegramBot(token, { polling: true });
+const app = express();
+const port = process.env.PORT || 3000;
 
-bot.on("message", (msg) => {
-  const chatId = msg.chat.id;
-  const messageText = msg.text;
+app.get("/", (req, res) => {
+  res.send("Hello, Vercel with TypeScript!");
+});
 
-  if (messageText === "/start") {
-    bot.sendMessage(chatId, "Welcome to the bot! yo");
-  }
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
